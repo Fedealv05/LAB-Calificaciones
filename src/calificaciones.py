@@ -59,27 +59,15 @@ def nota_continua(notas_teoria,notas_practicas):
 
     P1, P2 = notas_practicas
 
-    if T1 is None:
-        T1 = 0
-    if T2 is None:
-        T2 = 0
-    if T3 is None:
-        T3 = 0
-    if T4 is None:
-        T4 = 0
-    if P1 is None:
-        P1 = 0
-    if P2 is None:
-        P2 = 0
+    notaC1 = nota_cuatrimestre((T1, T2), P1)
 
-    if (0.1 * (T1 + T2) + 0.8 * P1)<4:
-        nota_continua= min(4,((0.1 * (T1 + T2) + 0.8 * P1) + (0.1 * (T3 + T4) + 0.8 * P2))/2)
-
-    elif (0.1 * (T3 + T4) + 0.8 * P2)<4:
-        nota_continua= min(4,((0.1 * (T1 + T2) + 0.8 * P1) + (0.1 * (T3 + T4) + 0.8 * P2))/2)
+    notaC2 = nota_cuatrimestre((T3, T4), P2)
+    
+    if notaC1<4 or notaC2<4:
+        nota_continua= min(4,(notaC1+notaC2)/2)
 
     else:
-        nota_continua = ((0.1 * (T1 + T2) + 0.8 * P1) + (0.1 * (T3 + T4) + 0.8 * P2))/2
+        nota_continua = ((notaC1+notaC2)/2)
 
     return nota_continua
     
